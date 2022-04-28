@@ -51,5 +51,7 @@
   </mat-form-field>
   <br/>
   <br/>
-  <button class="member-button" mat-raised-button color="primary" (click)="save()">Sign Up</button>
+  <button class="member-button" mat-raised-button color="primary" (click)="save()">Sign Up</button> <span *ngIf="message != ''" style="margin-left: 20px; padding: 10px; background-color: pink;"><b>{{message}}</b></span>
+
+  
 </form>

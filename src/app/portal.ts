@@ -26,6 +26,7 @@ export class Portal {
   email: string;
   fullname: string;
   code: string;
+  message: string = "";
 
   countries: Dropdown[] = [
     {value: 'UK', viewValue: 'United Kingdom'},
@@ -39,6 +40,7 @@ export class Portal {
 
   public save(): void {
 
+    this.message = "Success - please check your email for login information!";
     // this.membersService.updateMember(this.member)
     // .subscribe(data => {
     //   this.status = "Saved successfully";
