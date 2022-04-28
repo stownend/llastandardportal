@@ -12,7 +12,7 @@ interface Dropdown {
 
 
 /**
- * @title Select in a form
+ * @title LLA Standard - SignUp
  */
 @Component({
   selector: 'portal',
