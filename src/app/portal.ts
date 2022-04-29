@@ -37,7 +37,7 @@ export class Portal {
 
   countries: Dropdown[] = [
     {value: 'UK', viewValue: 'United Kingdom'},
-    {value: 'USA', viewValue: 'United States of America'},
+    {value: 'US', viewValue: 'United States of America'},
   ];
 
   types: Dropdown[] = [
