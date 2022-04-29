@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { ApiService} from './services/api.service';
 
 interface Food {
   value: string;
@@ -19,6 +20,10 @@ interface Dropdown {
   templateUrl: 'portal.html',
 })
 export class Portal {
+
+  constructor(private apiService: ApiService) {
+  }
+
   customerName: string;
   selectedCountry: string;
   selectedType: string;
@@ -40,7 +45,20 @@ export class Portal {
 
   public save(): void {
 
-    this.message = "Success - please check your email for login information!";
+    var access_token: string;
+
+    // Get the access token
+    this.apiService.getToken().subscribe((data) => {
+      console.log(data);
+      access_token = data;
+
+      // Now signUp the customer
+      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, new Date(), this.email, this.fullname, access_token).subscribe((data) => {
+        console.log(data);
+      })
+    });
+
+    //this.message = "Success - please check your email for login information!";
     // this.membersService.updateMember(this.member)
     // .subscribe(data => {
     //   this.status = "Saved successfully";
