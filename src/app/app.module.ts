@@ -8,6 +8,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
 
+import { MAT_DATE_LOCALE } from '@angular/material/core'  
+
 @NgModule({
   declarations: [Portal],
   imports: [
@@ -19,7 +21,9 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialExampleModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }  
+  ],
   bootstrap: [Portal],
 })
 export class AppModule {}

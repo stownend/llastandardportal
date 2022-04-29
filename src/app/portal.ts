@@ -24,13 +24,15 @@ export class Portal {
   constructor(private apiService: ApiService) {
   }
 
-  customerName: string;
+  customerName: string = "";
   selectedCountry: string;
   selectedType: string;
   leasesPurchased: number;
+  expires = new Date();
   email: string;
   fullname: string;
   code: string;
+  
   message: string = "";
 
   countries: Dropdown[] = [
@@ -45,25 +47,32 @@ export class Portal {
 
   public save(): void {
 
+    this.message = "";
     var access_token: string;
 
     // Get the access token
     this.apiService.getToken().subscribe((data) => {
-      console.log(data);
       access_token = data;
 
       // Now signUp the customer
-      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, new Date(), this.email, this.fullname, access_token).subscribe((data) => {
-        console.log(data);
+      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, this.expires, this.email, this.fullname, this.code, access_token).subscribe((data) => {
+        //console.log(data);
+
+        if (data == null) {
+
+          this.message = "Success - please check your email for login information!";
+
+        } else {
+
+          for (const [key, value] of Object.entries(data.error.modelState)) {
+            console.log(`${value}`);
+  
+            this.message += value + "<br/>";
+          }
+  
+        }
       })
     });
-
-    //this.message = "Success - please check your email for login information!";
-    // this.membersService.updateMember(this.member)
-    // .subscribe(data => {
-    //   this.status = "Saved successfully";
-    // });
-
   }
 }
 
