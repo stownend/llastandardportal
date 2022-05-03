@@ -9,33 +9,30 @@ import { throwError, of } from 'rxjs';
 })
 export class ApiService {
 
+  // apiRoot:string = "https://localhost:44336";
+  // tokenRoot: string = "https://llastandardtest1.auth.eu-west-2.amazoncognito.com";
+  // client_id: string = "4ba2r5fkr2gth2ki0b8ou4j38a";
+  // client_secret: string = "1hpt93tqgiev5joep126fk61lu7us2sa0fpe2frabm4kkon6ngot";
+  // scope:string = "https://localhost:44336/api/customerSignUp";
+
+  apiRoot:string = "https://dev-a.innervision.co.uk";
+  tokenRoot: string = "https://llastandardstaging1.auth.eu-west-2.amazoncognito.com";
+  client_id: string = "2n5gosf055f559ek9u5ncv9ckn";
+  client_secret: string = "1rk320bv2brd4t7abi6ondmi3l490fg6v62sm2cpeopc2gbovfsd";
+  scope:string = "https://localhost:44336/api/customerSignUp";
 
   constructor(private http: HttpClient) { }
   
   getToken() {
 
-    /*
+    
     var body: HttpParams = new HttpParams()
-    .set("client_id", "4ba2r5fkr2gth2ki0b8ou4j38a")
-    .set("client_secret", "1hpt93tqgiev5joep126fk61lu7us2sa0fpe2frabm4kkon6ngot")
+    .set("client_id", this.client_id)
+    .set("client_secret", this.client_secret)
     .set("grant_type", "client_credentials")
-    .set("scope", "https://localhost:44336/api/customerSignUp")
+    .set("scope", this.scope)
       
-    return this.http.post<Token>("https://llastandardtest1.auth.eu-west-2.amazoncognito.com/oauth2/token",
-      body.toString(),
-      {
-        headers: new HttpHeaders()
-        .set('Content-Type', 'application/x-www-form-urlencoded')
-      }).pipe(map(token => token.access_token));
-    */
-     
-    var body: HttpParams = new HttpParams()
-    .set("client_id", "2n5gosf055f559ek9u5ncv9ckn")
-    .set("client_secret", "1rk320bv2brd4t7abi6ondmi3l490fg6v62sm2cpeopc2gbovfsd")
-    .set("grant_type", "client_credentials")
-    .set("scope", "https://localhost:44336/api/customerSignUp")
-      
-    return this.http.post<Token>("https://llastandardstaging1.auth.eu-west-2.amazoncognito.com/oauth2/token",
+    return this.http.post<Token>(this.tokenRoot + "/oauth2/token",
       body.toString(),
       {
         headers: new HttpHeaders()
@@ -48,23 +45,22 @@ export class ApiService {
 
     var auth = new HttpHeaders().set('Authorization', 'Bearer ' + access_token);
 
-// return this.http.post("https://localhost:44336/v1/onboarding/signup",
 
-return this.http.post("https://dev-a.innervision.co.uk/v1/onboarding/signup",
-      {
-        "CustomerName": customerName,
-        "CountryCode": countryCode,
-        "CustomerType": customerType,
-        "LeasesPurchased": leasesPurchased,
-        "LicenceExpires": licenceExpires,
-        "UserEmail": email,
-        "UserFullName": fullname,
-        "Code": code
-      }, 
-      { 
-        headers: auth
-      }
-    ).pipe(catchError(val => of(val)))
+    return this.http.post(this.apiRoot + "/v1/onboarding/signup",
+          {
+            "CustomerName": customerName,
+            "CountryCode": countryCode,
+            "CustomerType": customerType,
+            "LeasesPurchased": leasesPurchased,
+            "LicenceExpires": licenceExpires,
+            "UserEmail": email,
+            "UserFullName": fullname,
+            "Code": code
+          }, 
+          { 
+            headers: auth
+          }
+        ).pipe(catchError(val => of(val)))
 
   }
 }
