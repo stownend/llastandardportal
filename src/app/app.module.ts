@@ -10,11 +10,18 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core'  
 
+import { RouterModule, Router } from '@angular/router';
+import { AppRoutingModule }  from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BuyItNowComponent } from './components/buy-it-now/buy-it-now.component';
+
 @NgModule({
-  declarations: [Portal],
+  declarations: [Portal, AppComponent, BuyItNowComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    RouterModule, 
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     MatNativeDateModule,
@@ -24,6 +31,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }  
   ],
-  bootstrap: [Portal],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

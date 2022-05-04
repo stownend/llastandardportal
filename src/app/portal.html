@@ -1,68 +1,321 @@
-<form>
-  <h1>IRIS Lease Accounting - Standard version</h1>
-  <h2>Customer Sign-up</h2>
-  <mat-form-field appearance="fill">
-    <mat-label>Your Company Name</mat-label>
-    <input class="title-form-field" matInput [(ngModel)]="customerName" name="customer">
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Your Name</mat-label>
-    <input class="title-form-field" matInput [(ngModel)]="fullname" name="fullname">
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Your Email address</mat-label>
-    <input class="title-form-field" matInput [(ngModel)]="email" name="email">
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Country</mat-label>
-    <mat-select [(ngModel)]="selectedCountry" name="country">
-      <mat-option *ngFor="let country of countries" [value]="country.value">
-        {{country.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Company Type</mat-label>
-    <mat-select [(ngModel)]="selectedType" name="type">
-      <mat-option *ngFor="let type of types" [value]="type.value">
-        {{type.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>No. of Leases purchased</mat-label>
-    <input class="title-form-field" matInput type="number" [(ngModel)]="leasesPurchased" name="leases">
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Expiry date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="expires" name="expires">
-    <mat-hint>DD/MM/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker ></mat-datepicker>
-  </mat-form-field>
-  <br/>
-  <br/>
-  <mat-form-field appearance="fill">
-    <mat-label>Code</mat-label>
-    <input class="title-form-field" matInput type="password" [(ngModel)]="code" name="code">
-  </mat-form-field>
-  <br/>
-  <br/>
-  <button class="member-button" mat-raised-button color="primary" (click)="save()">Sign Up</button> 
-  <b>
-  <div *ngIf="message != ''" style="margin-top: 20px; padding: 10px; background-color: pink;" [innerHTML]="message"></div>
-  </b>
+
+<div id="top" class="page-wrapper">
+  <div class="container-fluid hero home__hero">
+      <div class="row white_text">
+          <div class="col-sm-10 col-sm-offset-1 text-center">
+              <h1>
+                  <strong>Lease Accounting Software Made Simple</strong>
+              </h1>
+              <h4>
+                Stay in complete control of your Leases the easy way with IRIS Lease Accounting software
+              </h4>
+                <h3>
+                  <strong>Fully Compliant with FASB ASC842 and IFRS 16</strong>
+              </h3>
+              <div class="row">
+                  <div class="col-xs-4 benefit">
+                      <img src="https://www.kashflow.com/wp-content/uploads/2018/03/c451622335b44577caefa0c0a1b1d0b6_easy.png" alt="Easy to use." width="151" height="151">
+                      <h3>Easy to use</h3>
+                      <p>Set up in minutes</p>
+                  </div>
+                  <div class="col-xs-4 benefit">
+                      <img src="https://www.kashflow.com/wp-content/uploads/2018/03/5cdf95dfebd6da7e5b7e72a034600519_anywhere.png" alt="Flexible" width="151" height="151">
+                      <h3>On the go</h3>
+                      <p>Work from anywhere</p>
+                  </div>
+                  <div class="col-xs-4 benefit">
+                      <img src="https://www.kashflow.com/wp-content/uploads/2018/03/ebfb6b9fae2b0fe7a5150bd2085dea27_end.png" alt="Control." width="151" height="150">
+                      <h3>End to End</h3>
+                      <p>Save money on Accountancy</p>
+                  </div>
+              </div>
+              <!-- <div class="row">
+                  <div class="col-sm-8 col-sm-offset-2">
+                      <a href="#1523025416710-b251cfd5-a831" class="button button--base ">
+                          <strong>Find out more or start a free trial</strong>
+                          <span style="font-weight:400"> (No credit card required)</span>
+                      </a>
+                  </div>
+                  
+              </div> -->
+          </div>
+      </div>
+  </div>
+
+  <div class="vc_row wpb_row vc_row-fluid">
+      <div class="wpb_column vc_column_container vc_col-sm-12">
+          <div class="vc_column-inner ">
+              <div class="wpb_wrapper">
+                  <div class="wpb_text_column wpb_content_element text-center" id="pricing">
+                      <div class="wpb_wrapper">
+                          <br>
+                          <h2>Choose a pricing plan that fits your business needs</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
   
-</form>
+    <div class="vc_col-sm-12">
+      <div class="vc_row wpb_row vc_inner vc_row-fluid vc_column-gap-15">
+        <div class="text-center wpb_column vc_column_container vc_col-sm-1 vc_col-has-fill"></div>
+  
+        <div class="text-center wpb_column vc_column_container vc_col-sm-3 vc_col-has-fill">
+              <div class="vc_column-inner vc_custom_1523026370618">
+                  <div class="wpb_wrapper">
+                      <div class="wpb_single_image wpb_content_element vc_align_center vc_custom_1524040797553 icon">
+                          <figure class="wpb_wrapper vc_figure">
+                              <div class="vc_single_image-wrapper vc_box_border_grey">
+                                  <img width="99" height="128" src="https://www.kashflow.com/wp-content/uploads/2017/07/starter-icon.png" class="vc_single_image-img attachment-thumbnail" alt="market trolley icon white outline"/>
+                                    </div>
+                          </figure>
+                          <div class="wpb_wrapper white_text" style="padding: 4px;">
+                            <h3>SME</h3>
+                        </div>
+              </div>
+                      
+                      <div class="wpb_text_column wpb_content_element vc_custom_1619529105237 text-center">
+                          <div class="wpb_wrapper">
+                              
+                              <p>
+                                  <span class="price" style="color: #ef5b7a;">
+                                      £56
+                                      <sup>*</sup>
+                                  </span>
+                                  <span class="month" style="color: #ef5b7a;">/year + TAX</span>
+                              </p>
+                              <p>
+                                  <strong>Ideal for sole traders, contractors and small businesses</strong>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="wpb_text_column wpb_content_element vc_custom_1524045780589 text-center">
+                          <div class="wpb_wrapper">
+                            <ul class="list-ticked list-ticked--pink">
+                              <li>Add Leases manually or Bulk Upload (includes Lease Classification)</li>
+                              <li>View Amortization &amp Depreciation Schedules</li>
+                              <li>Apply full range of Modifications </li>
+                              <li>Extensive Reporting &amp Auditing</li>
+                              <li>Create Accounting Double Entry Journals</li>
+                          </ul>
+                            </div>
+                      </div>
+
+                      <div class="wpb_text_column wpb_content_element vc_custom_1540899263362">
+                          <div class="wpb_wrapper">
+                              <p>
+                                  <a class="button button--base" routerLink="/buyitnow">Buy it Now</a>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="wpb_text_column wpb_content_element vc_custom_1540899220931">
+                          <div class="wpb_wrapper">
+                              <p>
+                                  <a class="button button--base button--base-reverse" href="https://www.kashflow.com/l/kashflow-accounting-software/">Try it for free</a>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="text-center wpb_column vc_column_container vc_col-sm-3 vc_col-has-fill">
+              <div class="vc_column-inner vc_custom_1523026541229">
+                  <div class="wpb_wrapper">
+                      <div class="wpb_single_image wpb_content_element vc_align_center vc_custom_1524040807350 icon">
+                          <figure class="wpb_wrapper vc_figure">
+                              <div class="vc_single_image-wrapper vc_box_border_grey">
+                                  <img width="117" height="101" src="https://www.kashflow.com/wp-content/uploads/2017/07/business-icon.png" class="vc_single_image-img attachment-thumbnail" alt="shop front icon white outline"/>
+                              </div>
+                          </figure>
+                          <div class="wpb_wrapper white_text" style="padding: 4px;">
+                            <h3>CPA</h3>
+                          </div>
+
+                      </div>
+                      
+                      <div class="wpb_text_column wpb_content_element vc_custom_1619528987202 text-center">
+                          <div class="wpb_wrapper">
+                             
+                              <p>
+                                  <span class="price" style="color: #d6345f;">
+                                      £121
+                                      <sup>*</sup>
+                                  </span>
+                                  <span class="month" style="color: #d6345f;">/year + TAX</span>
+                              </p>
+                              <p>
+                                  <strong>Ideal for growing businesses and limited companies</strong>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="wpb_text_column wpb_content_element vc_custom_1524045780589 text-center">
+                        <div class="wpb_wrapper">
+                          <ul class="list-ticked list-ticked--pink">
+                            <li>Add Leases manually or Bulk Upload (includes Lease Classification)</li>
+                            <li>View Amortization &amp Depreciation Schedules</li>
+                            <li>Apply full range of Modifications </li>
+                            <li>Extensive Reporting &amp Auditing</li>
+                            <li>Create Accounting Double Entry Journals</li>
+                        </ul>
+                          </div>
+                    </div>
+                    <div class="wpb_text_column wpb_content_element vc_custom_1540899263362">
+                          <div class="wpb_wrapper">
+                              <p>
+                                  <a class="button button--base" routerLink="/buyitnow">Buy it Now</a>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="wpb_text_column wpb_content_element vc_custom_1540899220931">
+                          <div class="wpb_wrapper">
+                              <p>
+                                  <a class="button button--base button--base-reverse" href="https://www.kashflow.com/l/kashflow-accounting-software/">Try it for free</a>
+                              </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="text-center wpb_column vc_column_container vc_col-sm-3 vc_col-has-fill">
+              <div class="vc_column-inner vc_custom_1523026625024">
+                  <div class="wpb_wrapper">
+                      <div class="wpb_single_image wpb_content_element vc_align_center vc_custom_1524040817127 icon">
+                          <figure class="wpb_wrapper vc_figure">
+                              <div class="vc_single_image-wrapper vc_box_border_grey">
+                                  <img width="150" height="64" src="https://www.kashflow.com/wp-content/uploads/2017/07/businesspayroll-icon.png" class="vc_single_image-img attachment-thumbnail" alt="small business payroll icon"/>
+                              </div>
+                          </figure>
+                          <div class="wpb_wrapper white_text" style="padding: 4px;">
+                            <h3 >Enterprise</h3>
+                          </div>
+                      </div>
+                      
+                      <div class="wpb_text_column wpb_content_element vc_custom_1581333110959 text-center">
+                          <div class="wpb_wrapper">
+                             
+                              <p>
+                                  <span class="price" style="color: #891534;">
+                                      £TBA
+                                      <sup>*</sup>
+                                  </span>
+                                  <span class="month" style="color: #891534;">/year + TAX</span>
+                              </p>
+                              <p>
+                                  <strong>Same great business package features with added payroll</strong>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="wpb_text_column wpb_content_element vc_custom_1524045780589 text-center">
+                        <div class="wpb_wrapper">
+                          <ul class="list-ticked list-ticked--pink">
+                            <li>Add Leases manually or Bulk Upload (includes Lease Classification)</li>
+                            <li>View Amortization &amp Depreciation Schedules</li>
+                            <li>Apply full range of Modifications </li>
+                            <li>Extensive Reporting &amp Auditing</li>
+                            <li>Create Accounting Double Entry Journals</li>
+                        </ul>
+                          </div>
+                    </div>
+  
+                      <div class="wpb_text_column wpb_content_element vc_custom_1540898851334">
+                          <div class="wpb_wrapper" style="padding-right:20px;">
+                              <p>
+                                  <a class="button button--base" routerLink="/buyitnow">Contact Us</a>
+                              </p>
+                          </div>
+                      </div>
+                      <br>
+    
+                  </div>
+              </div>
+          </div>
+          <div class="text-center wpb_column vc_column_container vc_col-sm-1 vc_col-has-fill"></div>
+        </div>
+    </div>
+  <div class="container-fluid container--main container-grey text-center">
+  </div>
+  <div class="container-fluid container-dark">
+      <div class="hidden-xs dark-arrow-down"></div>
+  </div>
+  
+  <div class="container-fluid testimonials">
+      <div class="hidden-xs light-arrow-down"></div>
+  </div>
+  <div class="container-fluid container--main text-center">
+      <div class="row">
+          <div class="col-sm-12">
+              <h2>Why 58,000 businesses love IRIS Lease Accounting Software</h2>
+              <p>With inbuilt features enabling all the requirements for the new lease accounting standard, it’s no wonder so many SME's, CPA's and Enterprise customers choose IRIS Lease Accounting software.</p>
+          </div>
+      </div>
+  </div>
+  <div class="container-fluid container--main testimonials text-center">
+      <div class="row">
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test1.png" alt="Celtic Tuning logo.">
+                  <h3>Celtic Tuning</h3>
+                  <p>"Iris Lease Accounting provides you with a convenient and affordable system that is extremely easy-to-use. We have tried other products on the market and none even come close."</p>
+                  <p>Tony Cook</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test3.png" alt="Accuracymatters logo.">
+                  <h3>accuracymatters.co.uk</h3>
+                  <p>"Easy to use, especially for someone with little experience of using accounting software before."</p>
+                  <p>Rachel Davis</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test4.png" alt="Code Public Relations logo.">
+                  <h3>CODE Public Relation</h3>
+                  <p>"Things like journals fill me with dread! Iris Lease Accounting, once set up, does all the work. It’s brilliant!"</p>
+                  <p>Theresa Stinson</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test5.png" alt="scotbbtel logo.">
+                  <h3>scotbbtel.co.uk</h3>
+                  <p>"Takes away number crunching headaches better than a painkiller."</p>
+                  <p>Corrado Mella</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test6.png" alt="VA Toolbox logo.">
+                  <h3>va-toolbox.co.uk</h3>
+                  <p>"Love it, best package I've used and I have 15 years experience!"</p>
+                  <p>Lou Moon</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+          <div class="col-sm-3">
+              <div class="col-sm-10 col-sm-offset-1">
+                  <img src="https://www.kashflow.com/wp-content/themes/KashFlow-2013/dist/images/page-front-page/test2.png" alt="IR Marketing Consultancy logo.">
+                  <h3>I.R. Marketing Consultancy</h3>
+                  <p>"The Iris Lease Accounting Software is ridiculously straightforward and you get the immediate feeling that the package is designed with your own needs in mind."</p>
+                  <p>Ian Rhodes</p>
+                  <p class="accounting">IRIS Lease Accounting</p>
+              </div>
+          </div>
+      </div>
+  </div>
+<div class="container-fluid try-free-box text-center">
+      <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-8">
+              <p>See how IRIS Lease Accounting works with your business</p>
+          </div>
+          <div class="col-xs-12 col-sm-5 col-md-4">
+              <a href="/" class="button button--arrow" rel="nofollow"> Try it for free </a>
+          </div>
+      </div>
+  </div>
+
