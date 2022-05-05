@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="en" class="no-js"><head>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#e5426e">
@@ -1409,7 +1410,7 @@
     <nav id="menu">
         <ul>
             <li>
-                <a href="/">Home</a>
+                <a href="/llastandardportal">Home</a>
             </li>
             
             <li class="menu--button--sign-up">
@@ -1450,7 +1451,7 @@
                             <span></span>
                             <span></span>
                         </a>
-                        <a href="/" class="kashflow-logo">
+                        <a href="/llastandardportal" class="kashflow-logo">
                             <img alt="IRIS Innervision logo" src="assets/logo.png">
                         </a>
                     </div>
@@ -1496,8 +1497,7 @@
             </div>
             <div class="container-fluid header-light" style="background: white">
              <div class="row">
-                    <div class="col-sm-12" style="height: 61px;">
-                        <!-- <nav class="header-menu main-menu">
+                    <div class="col-sm-12" style="height: 61px;"><!-- <nav class="header-menu main-menu">
                             <ul>
                                 <li class="header-menu__link header-menu__link--arrow">
                                     <img src="https://www.kashflow.com/wp-content/uploads/2018/03/small-biz.png" height="25" width="25" alt="Bookkeeping.">
@@ -1590,7 +1590,9 @@
     </div>
   </div>
   
-  <app-root></app-root>
+  <div id="top" class="page-wrapper">
+    <app-root></app-root>
+  </div>
 
   <footer class="page-footer">
     <div class="container footer-navigation">
@@ -1893,8 +1895,10 @@ window.setTimeout(function() {
 }, 60000);
 });
 </script>  -->
-
-<script src="runtime.bccb4d0cf34bf784.js" type="module"></script><script src="polyfills.404f052401b84023.js" type="module"></script><script src="main.63606edf1518692c.js" type="module"></script>
+<script type="text/javascript">
+  paymentToken = "";
+</script>
+<script src="runtime.bccb4d0cf34bf784.js" type="module"></script><script src="polyfills.404f052401b84023.js" type="module"></script><script src="main.d990fbe4d9b5e1e4.js" type="module"></script>
 
 
 </body></html>
