@@ -21,10 +21,15 @@
                                 <div *ngIf="startType == 'buy'">
                                     <h4>Start using the SME version of IRIS Lease Accounting now!</h4>
                                     <h5>Perfect for businesses that need to account on just a few Leases</h5>
+                                    <br />
+                                    This version caters for 25 Leases
                                 </div>
                                 <div *ngIf="startType == 'trial'">
                                     <h4>Try out the SME version of IRIS Lease Accounting now!</h4>
                                     <h5>Perfect for businesses that need to account on just a few Leases</h5>
+                                    <br />
+                                    The trial caters for 3 Leases and is valid for 7 days. At the end of the trial it is
+                                    possible to upgrade to the full SME version
                                 </div>
                             </div>
                         </div>
@@ -44,10 +49,16 @@
                                 <div *ngIf="startType == 'buy'">
                                     <h4>Start using the CPA version of IRIS Lease Accounting now!</h4>
                                     <h5>Perfect for businesses that manage Leases on behalf of their clients</h5>
+                                    <br />
+                                    Leases can be purchased in bundles of 25. Multiple Lessees can be created but are
+                                    limited to 25 Leases each.
                                 </div>
                                 <div *ngIf="startType == 'trial'">
                                     <h4>Try out the CPA version of IRIS Lease Accounting now!</h4>
                                     <h5>Perfect for businesses that manage Leases on behalf of their clients</h5>
+                                    <br />
+                                    The trial caters for 3 Leases and is valid for 7 days. At the end of the trial it is
+                                    possible to upgrade to the full CPA version
                                 </div>
                             </div>
                         </div>
@@ -66,8 +77,7 @@
                                     <br />
                                     <mat-form-field appearance="fill">
                                         <mat-label>Registered Address</mat-label>
-                                        <input class="title-form-field" matInput [(ngModel)]="address"
-                                            name="address">
+                                        <input class="title-form-field" matInput [(ngModel)]="address" name="address">
                                     </mat-form-field>
                                     <br />
                                     <br />
@@ -89,12 +99,22 @@
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
-
+                                    <div *ngIf="selectedType == 'CPA' && startType == 'buy'">
+                                        <h4>Lease Bundles</h4>
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>How many bundles of 25 Leases</mat-label>
+                                            <input class="title-form-field" type="number" matInput
+                                                [(ngModel)]="bundleCount" name="bundleCount">
+                                        </mat-form-field>
+                                    </div>
                                 </div>
                             </form>
                             <div class="vc_col-sm-4 vc_custom_1619528987202">
-                                <h4>Initial User Details <mat-icon title="Additional users can be created once logged into the system">info</mat-icon></h4>
-                                
+                                <h4>Initial User Details <mat-icon
+                                        title="Additional users can be created once logged into the system">info
+                                    </mat-icon>
+                                </h4>
+
                                 <mat-form-field appearance="fill">
                                     <mat-label>Full Name</mat-label>
                                     <input class="title-form-field" matInput [(ngModel)]="fullname" name="fullname">
@@ -106,13 +126,15 @@
                                     <input class="title-form-field" matInput [(ngModel)]="email" name="email">
                                 </mat-form-field>
                                 <br />
-                                <re-captcha *ngIf="captcha == ''" (resolved)="resolvedCaptcha($event)" siteKey="6LdcA8YfAAAAAKoQAzuTQBNDq6O0tAeX-ZbQb9oF"></re-captcha>
-                                
-                                <p *ngIf="captcha != ''" style="width: 300px; cursor: pointer;">
+                                <re-captcha *ngIf="captcha == ''" (resolved)="resolvedCaptcha($event)"
+                                    siteKey="6LdcA8YfAAAAAKoQAzuTQBNDq6O0tAeX-ZbQb9oF"></re-captcha>
+
+                                <p *ngIf="message == '' && captcha != ''" style="width: 300px; cursor: pointer;">
                                     <a *ngIf="startType == 'trial'" class="button button--base" (click)="startTrial()">Start your Trial</a>
-                                    <a *ngIf="startType == 'buy'" class="button button--base" (click)="buyNow()">Buy now</a>
+                                    <a *ngIf="startType == 'buy' && !hasPaid()" class="button button--base" (click)="pay()">Pay now</a>
+                                    <a *ngIf="startType == 'buy' && hasPaid()" class="button button--base" (click)="buyNow()">Start now</a>
                                 </p>
-                    
+
                                 <b>
                                     <div *ngIf="message != ''"
                                         style="margin-top: 20px; padding: 10px; background-color: pink;"
@@ -121,7 +143,7 @@
                                 </b>
 
                             </div>
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

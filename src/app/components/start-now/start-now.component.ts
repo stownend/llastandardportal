@@ -30,12 +30,72 @@ export class StartNowComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    //this.loadStripe();
   }
 
   resolvedCaptcha(captchaResponse: string) {
     this.captcha = captchaResponse;
   }
 
+  hasPaid(): boolean {
+    return (<any>window).paymentToken != "";
+  }
+
+  pay() {
+
+    var amount: number = 0;
+
+    if (this.selectedType == 'SME') {
+      amount = 56;
+    } else if (this.selectedType == 'CPA') {
+      amount = 121 + 10 * this.bundleCount;
+    }
+
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51Kvzd2Ki9NY5HneSjyGE2VDHiOt12r5wvR2YICTMNX5qiKfcRu7qVkMEhiZn1aIlbH26EO4jo6DZk2T6PNxnH92a00KOhBR1Go',
+      locale: 'auto',
+      token: function (token: any) {
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+        console.log(token);
+        (<any>window).paymentToken = token;
+      }
+    });
+ 
+    handler.open({
+      name: 'IRIS Lease Accounting',
+      description: 'for ' + this.selectedType + 's',
+      amount: amount * 100
+    });
+  }
+
+
+
+  handler:any = null;
+
+  loadStripe() {
+     
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      s.onload = () => {
+        this.handler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51Kvzd2Ki9NY5HneSjyGE2VDHiOt12r5wvR2YICTMNX5qiKfcRu7qVkMEhiZn1aIlbH26EO4jo6DZk2T6PNxnH92a00KOhBR1Go',
+          locale: 'auto',
+          token: function (token: any) {
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+            console.log(token)
+            alert('Payment Success!!');
+          }
+        });
+      }
+       
+      window.document.body.appendChild(s);
+    }
+  }
   captcha: string;
 
   startType: string = "";
@@ -46,6 +106,7 @@ export class StartNowComponent implements OnInit {
   selectedState: string = "";
   selectedType: string;
   leasesPurchased: number;
+  bundleCount: number;
   expires = new Date();
   email: string;
   fullname: string;
@@ -329,13 +390,17 @@ export class StartNowComponent implements OnInit {
     this.apiService.getToken().subscribe((data) => {
       access_token = data;
 
+      this.leasesPurchased = 3;
+      this.expires = new Date();
+      this.code = "level42";
+
       // Now signUp the customer
-      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, this.expires, this.email, this.fullname, this.code, access_token).subscribe((data) => {
+      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, this.expires, this.email, this.fullname, this.code, true, access_token).subscribe((data) => {
         //console.log(data);
 
         if (data == null) {
 
-          this.message = "Success - please check your email for login information!";
+          this.message = "Success - Initial User should check their email for login information!";
 
         } else {
 
@@ -359,8 +424,18 @@ export class StartNowComponent implements OnInit {
     this.apiService.getToken().subscribe((data) => {
       access_token = data;
 
+      if (this.selectedType == 'SME')
+      {
+        this.leasesPurchased = 25;
+      } else if (this.selectedType == 'CPA') {
+        this.leasesPurchased = this.bundleCount * 25;
+      }
+
+      this.expires = new Date();
+      this.code = "level42";
+
       // Now signUp the customer
-      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, this.expires, this.email, this.fullname, this.code, access_token).subscribe((data) => {
+      this.apiService.signUp(this.customerName, this.selectedCountry, this.selectedType, this.leasesPurchased, this.expires, this.email, this.fullname, this.code, false, access_token).subscribe((data) => {
         //console.log(data);
 
         if (data == null) {
