@@ -7,6 +7,7 @@ import {Portal} from './portal';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
+import {RecaptchaModule} from 'ng-recaptcha';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core'  
 
@@ -14,9 +15,10 @@ import { RouterModule, Router } from '@angular/router';
 import { AppRoutingModule }  from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BuyItNowComponent } from './components/buy-it-now/buy-it-now.component';
+import { StartNowComponent } from './components/start-now/start-now.component';
 
 @NgModule({
-  declarations: [Portal, AppComponent, BuyItNowComponent],
+  declarations: [Portal, AppComponent, BuyItNowComponent, StartNowComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -27,6 +29,7 @@ import { BuyItNowComponent } from './components/buy-it-now/buy-it-now.component'
     MatNativeDateModule,
     MaterialExampleModule,
     ReactiveFormsModule,
+    RecaptchaModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }  

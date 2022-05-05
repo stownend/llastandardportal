@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { Portal } from './portal';
-import { BuyItNowComponent } from './components/buy-it-now/buy-it-now.component';
+import { StartNowComponent } from './components/start-now/start-now.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -11,9 +11,9 @@ const routerOptions: ExtraOptions = {
 };
 
 const routes: Routes = [
+  { path: '', redirectTo: '/portal', pathMatch: 'full' },
   { path: 'portal', component: Portal, },
-  { path: 'buyitnow', component: BuyItNowComponent, },
-  { path: '', redirectTo: '/portal', pathMatch: 'full' }
+  { path: 'startnow/:customerType/:startType', component: StartNowComponent, },
  ]
 
   @NgModule({

@@ -1,0 +1,130 @@
+<div class="vc_row wpb_row vc_row-fluid" style="padding-top: 60px !important;">
+    <div class="vc_col-sm-2"></div>
+    <div class="wpb_column vc_column_container vc_col-sm-8 vc_custom_1619528987202" style="padding: 0 !important;">
+        <div class="vc_column-inner " style="padding: 0 !important;">
+            <div class="wpb_wrapper">
+                <div class="wpb_text_column wpb_content_element " style="padding-bottom: 60px;">
+                    <div class="wpb_wrapper">
+                        <div *ngIf="selectedType == 'SME'"
+                            class="wpb_single_image wpb_content_element vc_custom_1524040797553 icon vc_col-sm-12"
+                            style="padding-top: 15px !important; padding-bottom: 15px;">
+                            <div style="padding: 4px; display: inline; float: left;">
+                                <figure>
+                                    <div class="">
+                                        <img style="width: 99px; height: 128px;"
+                                            src="https://www.kashflow.com/wp-content/uploads/2017/07/starter-icon.png"
+                                            class="" alt="market trolley icon white outline" />
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="white_text" style="display: inline;">
+                                <div *ngIf="startType == 'buy'">
+                                    <h4>Start using the SME version of IRIS Lease Accounting now!</h4>
+                                    <h5>Perfect for businesses that need to account on just a few Leases</h5>
+                                </div>
+                                <div *ngIf="startType == 'trial'">
+                                    <h4>Try out the SME version of IRIS Lease Accounting now!</h4>
+                                    <h5>Perfect for businesses that need to account on just a few Leases</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedType == 'CPA'"
+                            class="wpb_single_image wpb_content_element vc_custom_1524040807350 icon vc_col-sm-12"
+                            style="padding-top: 15px !important; padding-bottom: 15px;">
+                            <div style="padding: 4px; display: inline; float: left;">
+                                <figure>
+                                    <div class="">
+                                        <img style="width: 148px; height: 128px;"
+                                            src="https://www.kashflow.com/wp-content/uploads/2017/07/business-icon.png"
+                                            class="" alt="market trolley icon white outline" />
+                                    </div>
+                                </figure>
+                            </div>
+                            <div class="white_text" style="display: inline;">
+                                <div *ngIf="startType == 'buy'">
+                                    <h4>Start using the CPA version of IRIS Lease Accounting now!</h4>
+                                    <h5>Perfect for businesses that manage Leases on behalf of their clients</h5>
+                                </div>
+                                <div *ngIf="startType == 'trial'">
+                                    <h4>Try out the CPA version of IRIS Lease Accounting now!</h4>
+                                    <h5>Perfect for businesses that manage Leases on behalf of their clients</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 20px;">
+                            <form>
+                                <div class="vc_col-sm-2"></div>
+                                <div class="vc_col-sm-4 vc_custom_1619528987202">
+                                    <h4>Company Details</h4>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Your Company Name</mat-label>
+                                        <input class="title-form-field" matInput [(ngModel)]="customerName"
+                                            name="customer">
+                                    </mat-form-field>
+                                    <br />
+                                    <br />
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Registered Address</mat-label>
+                                        <input class="title-form-field" matInput [(ngModel)]="address"
+                                            name="address">
+                                    </mat-form-field>
+                                    <br />
+                                    <br />
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Country</mat-label>
+                                        <mat-select [(ngModel)]="selectedCountry" name="country">
+                                            <mat-option *ngFor="let country of countries" [value]="country.value">
+                                                {{country.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <br />
+                                    <br />
+                                    <mat-form-field *ngIf="selectedCountry == 'US'" appearance="fill">
+                                        <mat-label>State</mat-label>
+                                        <mat-select [(ngModel)]="selectedState" name="state">
+                                            <mat-option *ngFor="let state of states" [value]="state.value">
+                                                {{state.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                </div>
+                            </form>
+                            <div class="vc_col-sm-4 vc_custom_1619528987202">
+                                <h4>Initial User Details <mat-icon title="Additional users can be created once logged into the system">info</mat-icon></h4>
+                                
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Full Name</mat-label>
+                                    <input class="title-form-field" matInput [(ngModel)]="fullname" name="fullname">
+                                </mat-form-field>
+                                <br />
+                                <br />
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Email address</mat-label>
+                                    <input class="title-form-field" matInput [(ngModel)]="email" name="email">
+                                </mat-form-field>
+                                <br />
+                                <re-captcha *ngIf="captcha == ''" (resolved)="resolvedCaptcha($event)" siteKey="6LdcA8YfAAAAAKoQAzuTQBNDq6O0tAeX-ZbQb9oF"></re-captcha>
+                                
+                                <p *ngIf="captcha != ''" style="width: 300px; cursor: pointer;">
+                                    <a *ngIf="startType == 'trial'" class="button button--base" (click)="startTrial()">Start your Trial</a>
+                                    <a *ngIf="startType == 'buy'" class="button button--base" (click)="buyNow()">Buy now</a>
+                                </p>
+                    
+                                <b>
+                                    <div *ngIf="message != ''"
+                                        style="margin-top: 20px; padding: 10px; background-color: pink;"
+                                        [innerHTML]="message">
+                                    </div>
+                                </b>
+
+                            </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
